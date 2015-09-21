@@ -1,0 +1,8 @@
+#!/bin/bash -e
+
+set -x
+
+source $OPENSHIFT_HOMEDIR/python/virtenv/venv/bin/activate
+cd $OPENSHIFT_REPO_DIR
+
+pip install -r requirements/frozen.txt
