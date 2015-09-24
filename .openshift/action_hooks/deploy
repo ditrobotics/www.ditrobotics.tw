@@ -1,8 +1,3 @@
 #!/bin/bash -e
 
 set -x
-
-source $OPENSHIFT_HOMEDIR/python/virtenv/venv/bin/activate
-cd $OPENSHIFT_REPO_DIR
-
-python manage.py migrate --noinput

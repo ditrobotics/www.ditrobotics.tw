@@ -1,0 +1,3 @@
+# This is just a placeholder file
+# Openshift cannot install dependency correctly
+# so we'll use deploy hooks to install them

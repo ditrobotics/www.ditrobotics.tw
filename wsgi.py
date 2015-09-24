@@ -1,4 +1,4 @@
-import ditroboticstw.wsgi
+import ditroboticstw
 
 
-application = ditroboticstw.wsgi.application
+application = ditroboticstw.application
