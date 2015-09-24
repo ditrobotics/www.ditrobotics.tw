@@ -1,4 +1,4 @@
 import ditroboticstw
 
 
-application = ditroboticstw.application
+application = ditroboticstw.app
