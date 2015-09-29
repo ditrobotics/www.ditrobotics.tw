@@ -1,0 +1,107 @@
+{% set title = 'DIT Robotics' %}
+
+{% extends 'base.html' %}
+
+{% block endhead %}
+<style>
+body {
+    padding-top: 50px
+}
+body>.navbar {
+    -webkit-transition: background-color 300ms ease-in;
+    transition: background-color 300ms ease-in
+}
+@media (min-width: 768px) {
+    body>.navbar-transparent {
+        background-color: transparent
+    }
+    body>.navbar-transparent .navbar-nav>.open>a {
+        background-color: transparent!important
+    }
+}
+body {
+    padding-top: 0
+}
+.splash {
+    padding: 9em 0 2em;
+    background-color: #141d27;
+    background-image: url({{ url_for('static', filename='splash.jpg') }});
+    background-size: cover;
+    background-attachment: fixed;
+    color: #fff;
+    text-align: center
+}
+.splash .logo {
+    width: 160px
+}
+.splash h1 {
+    font-size: 3em
+}
+.splash #social {
+    margin: 2em 0
+}
+.splash .alert {
+    margin: 2em 0
+}
+@media (max-width: 767px) {
+    .splash {
+        padding-top: 4em
+    }
+    .splash .logo {
+        width: 100px
+    }
+    .splash h1 {
+        font-size: 2em
+    }
+    #banner {
+        margin-bottom: 2em;
+        text-align: center
+    }
+}
+</style>
+{% endblock %}
+
+{% block navbar %}
+{{ super() }}
+<div class="splash">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-lg-12">
+        <!-- <div><img class="logo" src="assets/img/logo.png"></div> -->
+        <h1>DIT Robotics</h1>
+        <h3>We Do, Improve and Try!</h3>
+        <div style="height:300px"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<h1 class="page-header">About Us</h2>
+<p>DIT Robotics 成立於 2013 年 11 月，為清大第一個自造者 (maker) 共同創作空間，是由喜愛機器人、想鑽研技術的年輕人組成。</p>
+<p>DIT = Do, Improve, Try，我們將秉持動手實作、不斷改進、勇於嘗試的精神迎接挑戰，以期最終能以機器人改變世界。</p>
+<p><a target="_blank" href="https://www.facebook.com/DIT.robotics">Facebook Fan Page</a></p>
+
+{% endblock %}
+
+{% block endbody %}
+{{ super() }}
+<script type="text/javascript">
+  $(window).scroll(function () {
+      var top = $(document).scrollTop();
+      $('.splash').css({
+        'background-position': '0px -'+(top/3).toFixed(2)+'px'
+      });
+      if(top > 50) {
+        $('.navbar').removeClass('navbar-transparent');
+      }
+      else {
+        $('.navbar').addClass('navbar-transparent');
+      }
+  });
+</script>
+{% endblock %}

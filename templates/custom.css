@@ -1,0 +1,7 @@
+.navbar-brand img {
+    -webkit-filter: invert(1);
+    filter: invert(1);
+}
+body {
+    padding-top: 50px;
+}
