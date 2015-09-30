@@ -24,38 +24,23 @@ body {
 }
 .splash {
     padding: 9em 0 2em;
+    height: 100vh;
     background-color: #141d27;
     background-image: url({{ url_for('static', filename='splash.jpg') }});
     background-size: cover;
-    background-attachment: fixed;
+    /* background-attachment: fixed;*/
     color: #fff;
     text-align: center
 }
-.splash .logo {
-    width: 160px
-}
 .splash h1 {
     font-size: 3em
-}
-.splash #social {
-    margin: 2em 0
-}
-.splash .alert {
-    margin: 2em 0
 }
 @media (max-width: 767px) {
     .splash {
         padding-top: 4em
     }
-    .splash .logo {
-        width: 100px
-    }
     .splash h1 {
         font-size: 2em
-    }
-    #banner {
-        margin-bottom: 2em;
-        text-align: center
     }
 }
 </style>
@@ -93,9 +78,6 @@ body {
 <script type="text/javascript">
   $(window).scroll(function () {
       var top = $(document).scrollTop();
-      $('.splash').css({
-        'background-position': '0px -'+(top/3).toFixed(2)+'px'
-      });
       if(top > 50) {
         $('.navbar').removeClass('navbar-transparent');
       }
