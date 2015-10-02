@@ -9,7 +9,7 @@ from flask.ext.oauthlib import client as oauth_client
 app = flask.Flask(__name__)
 
 app.config["BLOGGING_URL_PREFIX"] = "/blog"
-app.config["BLOGGING_DISQUS_SITENAME"] = "test"
+app.config["BLOGGING_DISQUS_SITENAME"] = "dit-robotics"
 app.config["BLOGGING_SITEURL"] = "http://www.ditrobotics.tw"
 
 
