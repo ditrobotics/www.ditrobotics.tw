@@ -14,18 +14,18 @@ app.config["BLOGGING_SITEURL"] = "http://www.ditrobotics.tw"
 app.config["BLOGGING_PERMISSIONS"] = True
 
 
-class BloggingCompatibleSQLAlchemy(sqlalchemy.SQLAlchemy):
-
-    def apply_driver_hacks(self, app, info, options):
-        options.setdefault('isolation_level', 'AUTOCOMMIT')
-        return super().apply_driver_hacks(app, info, options)
-
-
 if os.environ.get('DEBUG') == 'DEBUG':
     print('DEBUG')
+    BloggingCompatibleSQLAlchemy = sqlalchemy.SQLAlchemy
     app.config['SECRET_KEY'] = 'sk'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 else:
+    class BloggingCompatibleSQLAlchemy(sqlalchemy.SQLAlchemy):
+
+        def apply_driver_hacks(self, app, info, options):
+            options.setdefault('isolation_level', 'AUTOCOMMIT')
+            return super().apply_driver_hacks(app, info, options)
+
     app.config['SECRET_KEY'] = os.environ['OPENSHIFT_SECRET_TOKEN']
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://{host}:{port}/{dbname}'.format(
             host=os.environ['OPENSHIFT_POSTGRESQL_DB_HOST'],
