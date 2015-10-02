@@ -49,7 +49,8 @@ oauth = oauth_client.OAuth()
 
 STAFF_IDS = [
     '887556254623283',
-    '943484319004930'
+    '943484319004930',
+    '100002586754591',
 ]
 assert all(isinstance(staff_id, str) for staff_id in STAFF_IDS)
 
