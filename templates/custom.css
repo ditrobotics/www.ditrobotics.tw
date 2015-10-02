@@ -5,3 +5,7 @@
 body {
     padding-top: 100px;
 }
+
+textarea.md-input#text {
+    width: 100%;
+}
