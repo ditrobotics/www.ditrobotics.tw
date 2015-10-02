@@ -48,9 +48,10 @@ oauth = oauth_client.OAuth()
 
 
 STAFF_IDS = [
-    887556254623283,
-    943484319004930
+    '887556254623283',
+    '943484319004930'
 ]
+assert all(isinstance(staff_id, str) for staff_id in STAFF_IDS)
 
 
 # Auth
@@ -125,7 +126,7 @@ def logout():
 
 @principal.identity_loaded.connect_via(app)
 def on_identity_loaded(sender, identity):
-    if getattr(flask.session, 'facebook_id', None) in STAFF_IDS:
+    if flask.session.get('facebook_id') in STAFF_IDS:
         identity.provides.add(principal.RoleNeed('blogger'))
 
 
