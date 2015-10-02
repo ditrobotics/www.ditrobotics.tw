@@ -12,6 +12,14 @@ app.config["BLOGGING_URL_PREFIX"] = "/blog"
 app.config["BLOGGING_DISQUS_SITENAME"] = "test"
 app.config["BLOGGING_SITEURL"] = "http://www.ditrobotics.tw"
 
+
+class BloggingCompatibleSQLAlchemy(sqlalchemy.SQLAlchemy):
+
+    def apply_driver_hacks(self, app, info, options):
+        options.setdefault('isolation_level', 'AUTOCOMMIT')
+        return super().apply_driver_hacks(app, info, options)
+
+
 if os.environ.get('DEBUG') == 'DEBUG':
     print('DEBUG')
     app.config['SECRET_KEY'] = 'sk'
@@ -19,8 +27,8 @@ if os.environ.get('DEBUG') == 'DEBUG':
 else:
     app.config['SECRET_KEY'] = os.environ['OPENSHIFT_SECRET_TOKEN']
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://{host}:{port}/{dbname}'.format(
-            host=os.environ['OPENSHIFT_POSTGRESQL_IP'],
-            port=os.environ['OPENSHIFT_POSTGRESQL_PORT'],
+            host=os.environ['OPENSHIFT_POSTGRESQL_DB_HOST'],
+            port=os.environ['OPENSHIFT_POSTGRESQL_DB_PORT'],
             dbname='ditrobotics'
         )
 
@@ -31,7 +39,7 @@ FACEBOOK_APP_SECRET = os.environ['FACEBOOK_APP_SECRET']
 bootstrap.Bootstrap(app)
 principals = principal.Principal(app)
 manager = script.Manager(app)
-db = sqlalchemy.SQLAlchemy(app)
+db = BloggingCompatibleSQLAlchemy(app)
 login_manager = LoginManager(app)
 sql_storage = blogging.SQLAStorage(db=db)
 blogging_engine = blogging.BloggingEngine(app, sql_storage)
