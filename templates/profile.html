@@ -1,0 +1,17 @@
+{% set title = 'Profile' %}
+
+{% extends 'base.html' %}
+
+{% macro info(t, d) %}
+<dt>{{ t }}</dt><dd>{{ d }}</dd>
+{% endmacro %}
+
+{% block content %}
+<h1 class="page-header">
+  Profile
+</h1>
+<dl class="dl-horizontal">
+  {{ info('Name', session.username) }}
+  {{ info('Facebook ID', session.facebook_id) }}
+</dl>
+{% endblock %}

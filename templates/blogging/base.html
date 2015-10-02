@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block style %}
+    <style>
+        body { padding-top: 80px;}
+    </style>
+    {% block extrastyle %}{% endblock extrastyle %}
+{% endblock style %}
+
+{% block content %}
+    {% block main %}{% endblock main %}
+    {% block extramain %}{% endblock extramain %}
+{% endblock %}
+
+{% block endbody %}
+    {{ super() }}
+    {% block js %}
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          "HTML-CSS": {
+          styles: {
+          ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+          },
+          tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+          });
+    </script>
+    {% endblock js %}
+    {% block extrajs %}
+    {% endblock extrajs %}
+{% endblock endbody %}
