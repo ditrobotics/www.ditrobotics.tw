@@ -11,6 +11,7 @@ app = flask.Flask(__name__)
 app.config["BLOGGING_URL_PREFIX"] = "/blog"
 app.config["BLOGGING_DISQUS_SITENAME"] = "ditrobotics"
 app.config["BLOGGING_SITEURL"] = "http://www.ditrobotics.tw"
+app.config["BLOGGING_PERMISSIONS"] = True
 
 
 class BloggingCompatibleSQLAlchemy(sqlalchemy.SQLAlchemy):
@@ -48,6 +49,7 @@ oauth = oauth_client.OAuth()
 
 STAFF_IDS = [
     887556254623283,
+    943484319004930
 ]
 
 
